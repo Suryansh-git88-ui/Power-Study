@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Books | Power Study</title>
+     <script src="/cookie-validator.js"></script> <script> function getCookie(name) { const value = `; ${document.cookie}`; const parts = value.split(`; ${name}=`); if (parts.length === 2) return parts.pop().split(';').shift(); }
+if (!getCookie('🚀')) { window.location.href = 'login.html'; } </script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background-color: rgba(255, 0, 150, 0.2);
+      font-size: 2rem;
+      font-weight: bold;
+      color: #f7f7f7;
+    }
+
+    .search-bar {
+      text-align: center;
+      margin: 20px auto;
+    }
+
+    .search-bar input {
+      padding: 10px 20px;
+      width: 80%;
+      max-width: 500px;
+      border-radius: 20px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .book-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .book-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255, 0, 150, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .book-card:hover {
+      transform: scale(1.05);
+    }
+
+    .book-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .book-info {
+      padding: 15px;
+    }
+
+    .book-info h3 {
+      margin: 5px 0;
+      color: #f15bb5;
+    }
+
+    .book-info p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    .download-btn {
+      display: block;
+      text-align: center;
+      margin: 10px auto;
+      background: #7209b7;
+      padding: 10px;
+      border-radius: 20px;
+      color: white;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .download-btn:hover {
+      background: #560bad;
+    }
+
+    /* Background Animation */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
+      opacity: 0.1;
+      z-index: -1;
+      animation: moveBG 20s linear infinite;
+    }
+
+    @keyframes moveBG {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+  </style>
+
+  <!-- Firebase App (the core Firebase SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+  <header>📚 Power Study Books Gallery</header>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search books by name or author...">
+  </div>
+
+  <div id="books" class="book-container"></div>
+
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBNi6BHTKNd62VAY7q1oHQmxjZ3r0MUA9U",
+      authDomain: "edusparkk.xyz",
+      projectId: "eduspark-new",
+      storageBucket: "eduspark-new.appspot.com",
+      messagingSenderId: "564501033350",
+      appId: "1:564501033350:web:70c0f9873f96e9bd74fc07",
+      measurementId: "G-NM2SE3DE7J"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    const booksContainer = document.getElementById("books");
+    const searchInput = document.getElementById("searchInput");
+
+    function renderBook(doc) {
+      const data = doc.data();
+      const card = document.createElement("div");
+      card.className = "book-card";
+
+      card.innerHTML = `
+        <img src="${data.imageUrl || ''}" alt="Book Image"/>
+        <div class="book-info">
+          <h3>${data.bookName || 'Untitled'}</h3>
+          <p><strong>Author:</strong> ${data.authorName || 'N/A'}</p>
+          <p><strong>Downloads:</strong> ${data.downloads || 0}</p>
+          <p><strong>Submitted by:</strong> Lucifer</p>
+          <p><strong>Reviewed by:</strong> CUBIX 🔥</p>
+          <a class="download-btn" href="${data.driveLink || '#'}" target="_blank">Download</a>
+        </div>
+      `;
+
+      booksContainer.appendChild(card);
+    }
+
+    function loadBooks() {
+      booksContainer.innerHTML = "";
+      db.collection("books")
+        .orderBy("submittedAt", "desc")
+        .get()
+        .then(snapshot => {
+          snapshot.docs.forEach(doc => {
+            const data = doc.data();
+            const searchTerm = searchInput.value.toLowerCase();
+            const bookName = data.bookName?.toLowerCase() || '';
+            const authorName = data.authorName?.toLowerCase() || '';
+            if (bookName.includes(searchTerm) || authorName.includes(searchTerm)) {
+              renderBook(doc);
+            }
+          });
+        });
+    }
+
+    searchInput.addEventListener("input", loadBooks);
+
+    loadBooks();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Power Study | Access Key</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0d0221, #1e003a, #2a0d53);
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    #tsparticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      height: 100vh;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: rgba(15, 15, 30, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(255, 0, 128, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      text-align: center;
+    }
+
+    .container h2 {
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+      color: #ff63b1;
+      text-shadow: 0 0 12px rgba(255, 99, 177, 0.6);
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      border: 2px solid #ff4db8;
+      box-shadow: 0 0 20px rgba(255, 77, 184, 0.4);
+      margin-bottom: 20px;
+    }
+
+    .card h1 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      background: linear-gradient(to right, #ff416c, #8a2be2, #00c6ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .validity {
+      margin-bottom: 15px;
+      font-size: 1rem;
+      color: #ff4d4d;
+      text-shadow: 0 0 10px rgba(255, 77, 77, 0.4);
+    }
+
+    .button-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    button {
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #1e3a8a, #6d28d9);
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 18px rgba(121, 40, 202, 0.5);
+    }
+
+    button:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.7);
+    }
+
+    #recommendServer {
+      background: linear-gradient(135deg, #ff0080, #7928ca);
+      box-shadow: 0 0 22px rgba(255, 0, 128, 0.6);
+    }
+
+    #loadingMessage {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: #ff8080;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      .card h1 {
+        font-size: 1.4rem;
+      }
+
+      video {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="tsparticles"></div>
+
+  <div class="container">
+    <h2>📽️ Watch First - How to Access All Content</h2>
+    <video controls>
+      <source src="https://ik.imagekit.io/frwzww85g/screen-capture%20(1).webm/ik-video.mp4?updatedAt=1749561599199" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="card">
+      <h1>🔓 Access All Power Study Content</h1>
+      <div class="validity">Key Valid For: <span id="keyTimer">18h 01m</span></div>
+
+      <div class="button-row">
+        <button id="recommendServer"> 🚀 Server 01 </button>
+        <button id="server02">🌐 Server 02</button>
+        <button id="server03Url">🛰️ Server 03</button>
+      </div>
+
+      <p id="loadingMessage">⏳ Please wait, preparing your access key...</p>
+    </div>
+  </div>
+
+  <audio id="bgMusic" autoplay loop hidden>
+    <source src="https://files.catbox.moe/jl2sh3.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    const urls = {
+      server02: 'https://linkcents.com/pa1q35Q',
+      server03: 'https://linkcents.com/pa1q35Q',
+      recommendServer: 'https://linkcents.com/pa1q35Q'
+    };
+
+    function setTemporaryCookieAndRedirect(cookieName, url) {
+      if (!url) return alert('Invalid URL!');
+      document.getElementById("loadingMessage").style.display = "block";
+      setTimeout(() => {
+        document.cookie = `${cookieName}=true; path=/; max-age=${18 * 60 * 60}`;
+        window.location.href = url;
+      }, 2000);
+    }
+
+    document.getElementById('server02').addEventListener('click', () =>
+      setTemporaryCookieAndRedirect('server02KeyGenerated', urls.server02)
+    );
+    document.getElementById('server03Url').addEventListener('click', () =>
+      setTemporaryCookieAndRedirect('server03KeyGenerated', urls.server03)
+    );
+    document.getElementById('recommendServer').addEventListener('click', () =>
+      setTemporaryCookieAndRedirect('recommendServerKeyGenerated', urls.recommendServer)
+    );
+
+    // Countdown Timer for 18h
+    const endTime = Date.now() + 18 * 60 * 60 * 1000;
+    const timerElement = document.getElementById("keyTimer");
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = endTime - now;
+      if (diff <= 0) {
+        timerElement.textContent = "Expired";
+        return;
+      }
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      timerElement.textContent = `${hours}h ${minutes}m`;
+      requestAnimationFrame(updateCountdown);
+    }
+    updateCountdown();
+
+    // tsParticles animation
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: false },
+      background: { color: "#0d0221" },
+      particles: {
+        number: { value: 80 },
+        color: { value: ["#ff0055", "#7928ca", "#1e3a8a", "#ffffff"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.6 },
+        size: { value: { min: 1, max: 4 } },
+        move: {
+          enable: true,
+          speed: 1.5,
+          direction: "none",
+          outMode: "bounce"
+        },
+        links: {
+          enable: true,
+          distance: 120,
+          color: "#ff0077",
+          opacity: 0.3,
+          width: 1
+        }
+      },
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "repulse" },
+          onClick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { quantity: 4 }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

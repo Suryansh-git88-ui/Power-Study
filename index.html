@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Power Study - Free Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0f1c, #000000, #1a002a);
+      color: white;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .neon-btn {
+      background: linear-gradient(135deg, #d1004c, #6b21a8);
+      box-shadow: 0 0 20px #ff005daa;
+      transition: all 0.3s ease;
+    }
+
+    .neon-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #ff005d;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+
+    .popup {
+      animation: popup-fall 1s ease-out forwards;
+    }
+
+    @keyframes popup-fall {
+      0% {
+        transform: translateY(-200%) scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .background-animation {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .background-animation::before,
+    .background-animation::after {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,0,150,0.1), transparent 70%),
+                  radial-gradient(circle, rgba(0,255,255,0.1), transparent 70%),
+                  radial-gradient(circle, rgba(255,255,0,0.05), transparent 70%);
+      animation: floatParticles 60s linear infinite;
+    }
+
+    .background-animation::after {
+      animation-delay: 30s;
+    }
+
+    @keyframes floatParticles {
+      0% { transform: translate(-25%, -25%) rotate(0deg); }
+      100% { transform: translate(-25%, -25%) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Background Animation -->
+<div class="background-animation"></div>
+
+<!-- Centered Popup -->
+<div id="popup" class="popup fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
+  <div class="glass p-6 md:p-10 rounded-2xl text-center shadow-xl max-w-lg w-full border border-purple-900 bg-black bg-opacity-30 relative">
+    <!-- Close Button -->
+    <button onclick="document.getElementById('popup').style.display='none'"
+      class="absolute top-4 right-4 text-white text-xl hover:text-red-500 transition">
+      &times;
+    </button>
+    <h2 class="text-2xl md:text-3xl font-bold text-purple-300 mb-3">🚨 Important Notice</h2>
+    <p class="text-gray-300 mb-4">Join our official Telegram to stay updated and avoid getting banned from Power Study!</p>
+    <a href="https://t.me/EDUPROCBSE" class="neon-btn inline-block px-6 py-3 rounded-full font-semibold mt-2">
+      🚀 Join Telegram
+    </a>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="text-center py-40 px-6" data-aos="fade-up">
+  <h1 class="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text mb-4">
+    Power Study
+  </h1>
+  <p class="text-xl text-gray-300 max-w-2xl mx-auto">India’s Most Stunning Free Education Platform with 10,000+ Students Learning Daily</p>
+  <div class="mt-10 flex flex-wrap justify-center gap-5">
+    <a href="Psbooks.html" class="neon-btn py-3 px-6 rounded-full">📚 Free Books</a>
+    <a href="Choosecontent.html" class="neon-btn py-3 px-6 rounded-full bg-gradient-to-br from-purple-700 to-indigo-800">🎓 Batches</a>
+    
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="max-w-6xl mx-auto px-4 py-20" data-aos="fade-up">
+  <h2 class="text-4xl font-bold text-center mb-12 text-white">Why Power Study?</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="glass p-6 rounded-xl text-center">
+      <h3 class="text-xl text-red-400 font-semibold mb-2">🎯 100% Free</h3>
+      <p>All books, batches & classes are completely free — forever.</p>
+    </div>
+    <div class="glass p-6 rounded-xl text-center">
+      <h3 class="text-xl text-purple-400 font-semibold mb-2">🎨 World-Class UI</h3>
+      <p>Looks like a premium app. Designed for smooth, modern learning.</p>
+    </div>
+    <div class="glass p-6 rounded-xl text-center">
+      <h3 class="text-xl text-yellow-400 font-semibold mb-2">⚡ Lightning Fast</h3>
+      <p>Loads in milliseconds. Mobile-optimized & responsive.</p>
+    </div>
+    <div class="glass p-6 rounded-xl text-center">
+      <h3 class="text-xl text-pink-400 font-semibold mb-2">🔄 Always Updated</h3>
+      <p>Fresh content added weekly. New books & classes every day.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Join Community -->
+<section class="py-20 text-center bg-opacity-5 rounded-xl max-w-4xl mx-auto glass" data-aos="zoom-in">
+  <h2 class="text-3xl font-bold mb-3 text-white">🌐 Join Our Telegram</h2>
+  <p class="text-gray-300 mb-6">Be part of 10,000+ learners. Get daily updates, premium content and support.</p>
+  <a href="https://t.me/+c7KAULUbAJ9hYjI1" class="neon-btn px-6 py-3 rounded-full inline-block">
+    💬 Join Telegram
+  </a>
+</section>
+
+<!-- Footer -->
+<footer class="text-center text-sm text-gray-500 py-10 mt-16">
+  &copy; 2025 Power Study. Crafted with ❤️ for Every Student.
+</footer>
+
+<!-- Floating Support -->
+<a href="@POWERSTUDYHELPBOT" class="fixed bottom-5 right-5 bg-red-600 text-white px-5 py-3 rounded-full neon-btn shadow-xl hover:scale-110 transition">
+  💬 Support
+</a>
+
+<script>
+  AOS.init();
+</script>
+</body>
+</html>
