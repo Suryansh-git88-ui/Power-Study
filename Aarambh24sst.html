@@ -6,9 +6,10 @@
   <script src=
   "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"
   defer></script>
- <!--
+ <script src="/cookie-validator.js"></script> <script> function getCookie(name) { const value = `; ${document.cookie}`; const parts = value.split(`; ${name}=`); if (parts.length === 2) return parts.pop().split(';').shift(); }
+if (!getCookie('🚀')) { window.location.href = 'login.html'; } </script>
  
-  -->
+  
   <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
