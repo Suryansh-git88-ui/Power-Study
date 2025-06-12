@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Power Study - Login/Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Urbanist', sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #1e1f4a, #3c1a57, #7c0a33);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .auth-container {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ff0077aa;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #ff69b4;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ff0077;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #e00060;
+    }
+
+    .switch {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .switch a {
+      color: #00ccff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .google-btn {
+      margin-top: 10px;
+      background: #ffffff;
+      color: #333;
+    }
+
+    .google-btn:hover {
+      background: #e2e2e2;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+    <h2 id="formTitle">Register</h2>
+
+    <!-- Registration Form -->
+    <div id="registerForm">
+      <input type="text" id="regName" placeholder="Full Name" required />
+      <input type="email" id="regEmail" placeholder="Email" required />
+      <input type="password" id="regPass" placeholder="Password" required />
+      <button onclick="register()">Register</button>
+      <button class="google-btn" onclick="googleLogin()">Login with Google</button>
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginForm" class="hidden">
+      <input type="email" id="logEmail" placeholder="Email" required />
+      <input type="password" id="logPass" placeholder="Password" required />
+      <button onclick="login()">Login</button>
+      <button class="google-btn" onclick="googleLogin()">Login with Google</button>
+    </div>
+
+    <div class="switch">
+      <span id="switchText">Already have an account? <a onclick="toggleForm()">Login</a></span>
+    </div>
+  </div>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import {
+      getAuth, createUserWithEmailAndPassword,
+      signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider
+    } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+    import {
+      getFirestore, doc, setDoc
+    } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCAN7STy0MAI9EUCqao40tPcB85nMumYxI",
+      authDomain: "power-study-35a19.firebaseapp.com",
+      projectId: "power-study-35a19",
+      storageBucket: "power-study-35a19.firebasestorage.app",
+      messagingSenderId: "592000251308",
+      appId: "1:592000251308:web:b0ff4661f4c86e35427609",
+      measurementId: "G-KWBN6TQJ4M"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    window.toggleForm = () => {
+      const register = document.getElementById("registerForm");
+      const login = document.getElementById("loginForm");
+      const title = document.getElementById("formTitle");
+      const switchText = document.getElementById("switchText");
+
+      if (register.classList.contains("hidden")) {
+        register.classList.remove("hidden");
+        login.classList.add("hidden");
+        title.textContent = "Register";
+        switchText.innerHTML = `Already have an account? <a onclick="toggleForm()">Login</a>`;
+      } else {
+        register.classList.add("hidden");
+        login.classList.remove("hidden");
+        title.textContent = "Login";
+        switchText.innerHTML = `Don't have an account? <a onclick="toggleForm()">Register</a>`;
+      }
+    }
+
+    window.register = async () => {
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const password = document.getElementById("regPass").value;
+
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        name,
+        email,
+        banned: false,
+        restricted: false
+      });
+
+      alert("Registration successful!");
+      localStorage.setItem("loggedIn", "true");
+      window.location.href = "/index.html";
+    }
+
+    window.login = async () => {
+      const email = document.getElementById("logEmail").value;
+      const password = document.getElementById("logPass").value;
+
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Login successful!");
+      localStorage.setItem("loggedIn", "true");
+      window.location.href = "/index.html";
+    }
+
+    window.googleLogin = async () => {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      alert("Google login success!");
+      localStorage.setItem("loggedIn", "true");
+      window.location.href = "/index.html";
+    }
+  </script>
+</body>
+</html>
