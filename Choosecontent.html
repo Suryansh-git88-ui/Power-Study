@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Explore Power Study</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+  // Check if the user is logged in
+  const isLoggedIn = localStorage.getItem("loggedIn");
+
+  // If not logged in, redirect to the main login/home page
+  if (!isLoggedIn) {
+    window.location.href = "https://power-studys.netlify.app";
+  }
+</script>
   <style>
   /* Body with smooth gradient and subtle noise overlay for texture */
-body {
+ body {
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   color: #eee;
   overflow-x: hidden;

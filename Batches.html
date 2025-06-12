@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.cdnfonts.com/css/lemon-milk" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+  // Check if the user is logged in
+  const isLoggedIn = localStorage.getItem("loggedIn");
+
+  // If not logged in, redirect to the main login/home page
+  if (!isLoggedIn) {
+    window.location.href = "https://power-studys.netlify.app";
+  }
+</script>
    <style>
    /* GENERAL RESET */
 * {
@@ -422,7 +432,28 @@ body {
                 </a>
             </div>
         </div>
-
+      
+ <main class="container">
+   
+  <div class="study-item" data-class="10">
+            <img src="https://i.ibb.co/4RsB51S6/hq720-1.webp" class="study-image">
+            <div class="study-box">
+                <button class="enroll-btn">Enroll Now</button>
+                <h3 class="course-title">AARAMBH  CLASS 10th 2025 </h3>
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <div class="stat-value">5+</div>
+                        <div class="stat-label">Teachers</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Support</div>
+                    </div>
+                </div>
+                <a href="Aarambh24sc" class="study-link">
+                    Explore Course <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
       
      
             </div>

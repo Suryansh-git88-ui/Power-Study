@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Power Study Video</title>
+  <script>
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    if (!getCookie('🚀')) {
+      window.location.href = '/login/';
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Pacifico&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #0b0c2a, #2e003e, #1e1e3f, #001f3f);
+      background-size: 400% 400%;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      animation: gradientMove 8s ease infinite, fadeIn 1s ease-in-out;
+      padding: 8px;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .header {
+      font-family: 'Pacifico', cursive;
+      font-size: 28px;
+      color: #ff4081;
+      margin-bottom: 5px;
+      text-shadow: 2px 2px 5px rgba(255, 64, 129, 0.6);
+    }
+
+    .motivational-text {
+      font-size: 12px;
+      text-align: center;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(6px);
+      max-width: 95%;
+      margin-bottom: 10px;
+    }
+
+    .attention-text {
+      font-size: 12px;
+      color: #ffcc00;
+      font-weight: bold;
+      margin: 6px 0 8px 0;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 6px 12px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(255, 204, 0, 0.3);
+    }
+
+    .player-container {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid #9c27b0;
+      box-shadow: 0 5px 15px rgba(156, 39, 176, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">Power Study</div>
+  <div class="motivational-text" id="motivational-text"></div>
+  <div class="attention-text">Double Tap for Fullscreen</div>
+  <div class="player-container">
+    <div id="my-player"></div>
+  </div>
+
+  <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+  <script>
+    const motivationalThoughts = [
+      'Success is not final; failure is not fatal.',
+      'Believe you can and you\'re halfway there.',
+      'Do what you love. Love what you do.',
+      'Time is limited—use it wisely.',
+      'Small steps every day lead to big results.'
+    ];
+
+    document.getElementById('motivational-text').textContent =
+      motivationalThoughts[Math.floor(Math.random() * motivationalThoughts.length)];
+
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    const vidId = getQueryParam('vid-id');
+    const fallbackUrl = 'https://devstreaming-cdn.apple.com/videos/streaming/examples/adv_dv_atmos/main.m3u8';
+    const videoUrl = vidId
+      ? (vidId.startsWith('http') ? vidId : `https://d1qcficr3lu37x.cloudfront.net/file_library/videos/channel_vod_non_drm_hls/${vidId}/index_3.m3u8`)
+      : fallbackUrl;
+
+    jwplayer("my-player").setup({
+      file: videoUrl,
+      width: "100%",
+      aspectratio: "16:9",
+      autostart: false,
+      playbackRateControls: true,
+      playbackRates: [0.5, 1, 1.25, 1.5, 2],
+      controls: true,
+    }).on('ready', function () {
+      jwplayer("my-player").addButton(
+        "https://img.icons8.com/ios-filled/50/00FFA3/fast-forward.png",
+        "Forward 10 Seconds",
+        function () {
+          jwplayer("my-player").seek(jwplayer("my-player").getPosition() + 10);
+        },
+        "forward10"
+      );
+    });
+  </script>
+</body>
+</html>

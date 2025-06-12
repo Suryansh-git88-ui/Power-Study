@@ -6,6 +6,16 @@
     <title>Prarambh Commerce |</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+  // Check if the user is logged in
+  const isLoggedIn = localStorage.getItem("loggedIn");
+
+  // If not logged in, redirect to the main login/home page
+  if (!isLoggedIn) {
+    window.location.href = "https://power-studys.netlify.app";
+  }
+</script>
       <script src="/cookie-validator.js"></script> <script> function getCookie(name) { const value = `; ${document.cookie}`; const parts = value.split(`; ${name}=`); if (parts.length === 2) return parts.pop().split(';').shift(); }
 if (!getCookie('🚀')) { window.location.href = 'login.html'; } </script>
 
@@ -583,7 +593,7 @@ if (!getCookie('🚀')) { window.location.href = 'login.html'; } </script>
                     startHour: 17,  // 5 PM (24-hour format)
                     startMinute: 00,
                     durationMinutes: 60,  // Class duration in minutes
-                    link: "https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d1kw75zcv4u98c.cloudfront.net/out/v1/5df5be72d17649f79577314291c6d2fc/index_3.m3u8",
+                    link: "https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3rho91jos7925.cloudfront.net/out/v1/a63dd48a9268402b8961662fc9993c8d/index_1.m3u8",
                     isLive: false  // Will be calculated automatically
                 },
                 {
@@ -593,7 +603,7 @@ if (!getCookie('🚀')) { window.location.href = 'login.html'; } </script>
                     startHour: 20,  // 8 PM (24-hour format)
                     startMinute: 05,
                     durationMinutes: 60,  // Class duration in minutes
-                    link: "https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_1.m3u8",
+                    link: "https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d2ypa0i2sdc0h2.cloudfront.net/out/v1/953b87b302b04b50a75b8ed04c215cc4/index_1.m3u8",
                     isLive: false  // Will be calculated automatically
                 }
             ];

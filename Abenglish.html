@@ -3,12 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Power Study -ENGLISH</title>
+  <title>Power Study - ENGLISH</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-    <script src="/cookie-validator.js"></script> <script> function getCookie(name) { const value = `; ${document.cookie}`; const parts = value.split(`; ${name}=`); if (parts.length === 2) return parts.pop().split(';').shift(); }
-if (!getCookie('🚀')) { window.location.href = 'login.html'; } </script>
+  
+  <script>
+  // Check if the user is logged in
+  const isLoggedIn = localStorage.getItem("loggedIn");
 
-  <style>
+  // If not logged in, redirect to the main login/home page
+  if (!isLoggedIn) {
+    window.location.href = "https://power-studys.netlify.app";
+  }
+</script>
+  <script src="/cookie-validator.js"></script>
+  <script>
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    if (!getCookie('🚀')) {
+      window.location.href = 'login.html';
+    }
+  </script>
+ 
+   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
@@ -137,127 +156,136 @@ if (!getCookie('🚀')) { window.location.href = 'login.html'; } </script>
       padding: 30px 10px;
     }
   </style>
+
 </head>
 <body>
 
-  <!-- Header -->
   <div class="header">Aarambh English Power Study</div>
-
-  <!-- Toggle Buttons -->
   <div class="toggle-buttons">
-    <button id="lecturesBtn" class="active" onclick="toggleContent('lectures')">ENGLISH B 📘 </button>
-    <button id="notesBtn" onclick="toggleContent('notes')"> ENGLISH A 📄</button>
+    <button id="lecturesBtn" class="active" onclick="toggleContent('lectures')">ENGLISH B 📘</button>
+    <button id="notesBtn" onclick="toggleContent('notes')">ENGLISH A 📄</button>
   </div>
 
-  <!-- Search -->
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="🔍 Search Lectures or Notes..." oninput="filterContent()" />
   </div>
 
   <!-- Lectures -->
   <div id="lectures" class="content-grid active">
-    
-     <!-- OLD ONES -->
-<div class="content-item">  
-    <h3>Letter to God</h3>  
-    <p>Lec - 1</p>  
-    <a href="https://power-study.vercel.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355437/1745094964_5789358984187695/sunny/1745075625242_69087200894049560_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>  
-</div>  
-<div class="content-item">  
-    <h3>Letter to God</h3>  
-    <p>Lec - 2</p>  
-    <a href="https://power-study.vercel.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355438/1745092805_3842501733043505/sunny/1745075729856_273253030448162560_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>  
-</div>
-   <!-- NEW ONES -->
-<div class="content-item">  
-    <h3>Dust of Snow</h3>  
-    <p>Lec - 1</p>  
-    <a href="https://power-study.vercel.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362883/1745829064_8896744564209427/sunny/1745823405144_213803673785664260_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>  
-</div>  
-<div class="content-item">  
-    <h3>Dust of Snow</h3>  
-    <p>Lec - 2</p>  
-    <a href="https://power-study.vercel.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362884/1745829304_9832761018325665/sunny/1745823991438_632000197320964000_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>  
-</div>  
-<div class="content-item">  
-    <h3>Fire and Ice</h3>  
-    <p>Lec - 1</p>  
-    <a href="https://power-study.vercel.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367124/1746114124_9255773397148498/sunny/1746110633800_95893697207908130_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>  
-</div>  
-<div class="content-item">  
-    <h3>Fire and Ice</h3>  
-    <p>Lec - 2</p>  
-    <a href="https://power-study.vercel.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367125/1746114604_3028472308291210/sunny/1746110727065_699236270267016600_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>  
-</div>  
-<div class="content-item">  
-    <h3>Triumph of Surgery</h3>  
-    <p>Lec - 1</p>  
-    <a href="https://power-study.vercel.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378115/1747004104_5093798446180655/sunny/1746963761393_790760791059125000_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>  
-</div>  
-<div class="content-item">  
-    <h3>Triumph of Surgery</h3>  
-    <p>Lec - 2</p>  
-    <a href="https://power-study.vercel.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378116/1747003684_6295147578406091/sunny/1746963929440_149734756542958400_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>  
-</div>
+    <!-- Letter to God -->
+    <div class="content-item">
+      <h3>Letter to God</h3>
+      <p>Lec – 1</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355437/1745094964_5789358984187695/sunny/1745075625242_69087200894049560_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+    <div class="content-item">
+      <h3>Letter to God</h3>
+      <p>Lec – 2</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355438/1745092805_3842501733043505/sunny/1745075729856_273253030448162560_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+
+    <!-- Dust of Snow -->
+    <div class="content-item">
+      <h3>Dust of Snow</h3>
+      <p>Lec – 1</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362883/1745829064_8896744564209427/sunny/1745823405144_213803673785664260_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+    <div class="content-item">
+      <h3>Dust of Snow</h3>
+      <p>Lec – 2</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362884/1745829304_9832761018325665/sunny/1745823991438_632000197320964000_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+
+    <!-- Fire and Ice -->
+    <div class="content-item">
+      <h3>Fire and Ice</h3>
+      <p>Lec – 1</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367124/1746114124_9255773397148498/sunny/1746110633800_95893697207908130_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+    <div class="content-item">
+      <h3>Fire and Ice</h3>
+      <p>Lec – 2</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367125/1746114604_3028472308291210/sunny/1746110727065_699236270267016600_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+
+    <!-- Triumph of Surgery -->
+    <div class="content-item">
+      <h3>Triumph of Surgery</h3>
+      <p>Lec – 1</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378115/1747004104_5093798446180655/sunny/1746963761393_790760791059125000_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+    <div class="content-item">
+      <h3>Triumph of Surgery</h3>
+      <p>Lec – 2</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?link=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4378116/1747003684_6295147578406091/sunny/1746963929440_149734756542958400_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
   </div>
 
   <!-- Notes -->
   <div id="notes" class="content-grid">
-  <div class="content-item">
-  <h3>Not Marble Nor the Gilded Monuments</h3>
-  <p>Lecture - 1</p>
-  <a href="https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376917/1746788586_3118219510350494/sunny/1746785237746_73373005227226720_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>
-</div>
+    <div class="content-item">
+      <h3>Not Marble Nor the Gilded Monuments</h3>
+      <p>Lecture – 1</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376917/1746788586_3118219510350494/sunny/1746785237746_73373005227226720_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+    <div class="content-item">
+      <h3>Not Marble Nor the Gilded Monuments</h3>
+      <p>Lecture – 2</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376916/1746788286_9238689736936176/sunny/1746785064614_34380386813839468_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
 
-<div class="content-item">
-  <h3>Not Marble Nor the Gilded Monuments</h3>
-  <p>Lecture - 2</p>
-  <a href="https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4376916/1746788286_9238689736936176/sunny/1746785064614_34380386813839468_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>
-</div>
+    <div class="content-item">
+      <h3>The Frog and the Nightingale</h3>
+      <p>Lecture – 1</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362090/1745704264_4978832941989791/sunny/1745675953554_782663074466947200_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+    <div class="content-item">
+      <h3>The Frog and the Nightingale</h3>
+      <p>Lecture – 2</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362091/1745704384_6312355312118548/sunny/1745676024180_88967490348689950_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
 
-<div class="content-item">
-  <h3>The Frog and the Nightingale</h3>
-  <p>Lecture - 1</p>
-  <a href="https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362090/1745704264_4978832941989791/sunny/1745675953554_782663074466947200_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>
-</div>
+    <div class="content-item">
+      <h3>Two Gentlemen of Verona</h3>
+      <p>Lecture – 1</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355439/1745093044_4924087909410992/sunny/1745075811428_105843213207123620_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+    <div class="content-item">
+      <h3>Two Gentlemen of Verona</h3>
+      <p>Lecture – 2</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355440/1745093225_3967621876101546/sunny/1745075940281_157990210964759200_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
 
-<div class="content-item">
-  <h3>The Frog and the Nightingale</h3>
-  <p>Lecture - 2</p>
-  <a href="https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4362091/1745704384_6312355312118548/sunny/1745676024180_88967490348689950_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>
-</div>
-
-<div class="content-item">
-  <h3>Two Gentlemen of Verona</h3>
-  <p>Lecture - 1</p>
-  <a href="https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355439/1745093044_4924087909410992/sunny/1745075811428_105843213207123620_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>
-</div>
-
-<div class="content-item">
-  <h3>Two Gentlemen of Verona</h3>
-  <p>Lecture - 2</p>
-  <a href="https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4355440/1745093225_3967621876101546/sunny/1745075940281_157990210964759200_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>
-</div>
-
-<div class="content-item">
-  <h3>Mrs. Packletide's Tiger</h3>
-  <p>Lecture - 1</p>
-  <a href="https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4375874/1746715685_6467102360708575/sunny/1746702709908_190195341099177200_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>
-</div>
-
-<div class="content-item">
-  <h3>Mrs. Packletide's Tiger</h3>
-  <p>Lecture - 2</p>
-  <a href="https://power-study.vercel.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367122/1746113585_9053988121991665/sunny/1746110508932_875998882032868000_video_VOD480p30.m3u8" class="btn-primary" target="_blank">▶ Watch Now</a>
-</div>
+    <div class="content-item">
+      <h3>Mrs. Packletide’s Tiger</h3>
+      <p>Lecture – 1</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4375874/1746715685_6467102360708575/sunny/1746702709908_190195341099177200_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
+    <div class="content-item">
+      <h3>Mrs. Packletide’s Tiger</h3>
+      <p>Lecture – 2</p>
+      <a href="https://power-study.netlify.app/Videoplayer.html?lessonurl=https://d3cx6qbbd4cbso.cloudfront.net/file_library/videos/vod_non_drm_ios/4367122/1746113585_9053988121991665/sunny/1746110508932_875998882032868000_video_VOD480p30.m3u8"
+         class="btn-primary" target="_blank">▶ Watch Now</a>
+    </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    © 2025 Power Study | Dark Mode Edition
-  </footer>
+  <footer>© 2025 Power Study | Dark Mode Edition</footer>
 
-  <!-- JS -->
   <script>
     const lecturesBtn = document.getElementById('lecturesBtn');
     const notesBtn = document.getElementById('notesBtn');
@@ -276,19 +304,17 @@ if (!getCookie('🚀')) { window.location.href = 'login.html'; } </script>
         notesBtn.classList.add('active');
         lecturesBtn.classList.remove('active');
       }
-      filterContent(); // Apply search again on toggle
+      filterContent();
     }
 
     function filterContent() {
       const input = document.getElementById('searchInput').value.toLowerCase();
       const activeGrid = document.querySelector('.content-grid.active');
-      const items = activeGrid.querySelectorAll('.content-item');
-
-      items.forEach(item => {
-        const text = item.innerText.toLowerCase();
-        item.style.display = text.includes(input) ? 'block' : 'none';
+      activeGrid.querySelectorAll('.content-item').forEach(item => {
+        item.style.display = item.innerText.toLowerCase().includes(input) ? 'block' : 'none';
       });
     }
   </script>
+
 </body>
 </html>
