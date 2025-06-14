@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PowerStudy MOD Download</title>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Urbanist', sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid limegreen;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+    }
+
+    .info-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 0, 0.3);
+      border-left: 4px solid limegreen;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .info-box h2 {
+      font-size: 16px;
+      color: #ff69b4;
+      margin-bottom: 6px;
+    }
+
+    .info-box p {
+      font-size: 13px;
+      color: #ccc;
+      max-width: 90%;
+    }
+
+    .tick {
+      font-size: 20px;
+      color: limegreen;
+    }
+
+    .progress-container {
+      background: #111;
+      border-radius: 30px;
+      overflow: hidden;
+      margin: 14px 0;
+      box-shadow: 0 0 10px #ff69b488;
+    }
+
+    .progress-bar {
+      height: 22px;
+      width: 0%;
+      color: #fff;
+      background: linear-gradient(90deg, #00ff7f, #ff69b4);
+      text-align: center;
+      line-height: 22px;
+      font-size: 12px;
+      font-weight: bold;
+      animation: loadBar 5s linear forwards;
+    }
+
+    @keyframes loadBar {
+      0%   { width: 0%; }
+      33%  { width: 33%; }
+      66%  { width: 66%; }
+      100% { width: 100%; }
+    }
+
+    .stage-text {
+      text-align: center;
+      font-size: 13px;
+      color: #bbb;
+      margin-top: 6px;
+    }
+
+    .download-btn {
+      display: block;
+      width: fit-content;
+      margin: 16px auto 0;
+      padding: 10px 22px;
+      border-radius: 25px;
+      background: linear-gradient(to right, #00ff7f, #ff69b4);
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 0 10px #ff69b4a2;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .download-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .background-anim {
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 105, 180, 0.08) 20%, transparent 70%),
+                  radial-gradient(circle, rgba(0, 255, 127, 0.05) 40%, transparent 80%);
+      animation: float 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-50px, 60px); }
+    }
+
+    @media (max-height: 650px) {
+      body {
+        font-size: 90%;
+        padding-top: 10px;
+        align-items: start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background-anim"></div>
+
+  <div class="container">
+    <div class="info-box">
+      <div>
+        <h2>About PowerStudy</h2>
+        <p>PowerStudy is India’s fastest-growing platform for online education, offering batches, books, lectures, and exclusive MODs for school & competitive success.</p>
+      </div>
+      <div class="tick">✅</div>
+    </div>
+
+    <div class="info-box">
+      <div>
+        <h2>About PowerStudy MOD APK</h2>
+        <p>This MOD APK unlocks all premium features – ad-free UI, offline content, faster access, video downloads, and more. No login required!</p>
+      </div>
+      <div class="tick">✅</div>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar">Checking APK...</div>
+    </div>
+    <div class="stage-text" id="stageText">Checking APK...</div>
+
+    <div class="download-btn" onclick="redirectToDownload()">⬇ Download Now</div>
+  </div>
+
+  <script>
+    const progressBar = document.getElementById('progressBar');
+    const stageText = document.getElementById('stageText');
+
+    setTimeout(() => {
+      progressBar.textContent = "Scanning for Virus...";
+      stageText.textContent = "Scanning for Virus...";
+    }, 2000);
+
+    setTimeout(() => {
+      progressBar.textContent = "APK is Safe to Install ✅";
+      stageText.textContent = "APK is Safe to Install ✅";
+    }, 4000);
+
+    function redirectToDownload() {
+      const params = new URLSearchParams(window.location.search);
+      const url = params.get("url");
+      if (url) {
+        window.location.href = url;
+      } else {
+        alert("Download link missing.");
+      }
+    }
+  </script>
+
+</body>
+</html>
