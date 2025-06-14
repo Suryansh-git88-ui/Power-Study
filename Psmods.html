@@ -4,338 +4,955 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>PowerStudy MOD HUB</title>
-  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --red: #ff416c;
-      --purple: #7b2ff7;
-      --blue: #0f0c29;
-      --gradient: linear-gradient(to right, var(--red), var(--purple));
+      --primary-red: #ff3b3b;
+      --accent-cyan: #00ffd5;
+      --dark-bg: linear-gradient(135deg, #0e0e0e 0%, #1d1b38 100%);
+      --glass-bg: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --input-bg: rgba(255, 255, 255, 0.05);
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --shadow-red: rgba(255, 59, 59, 0.4);
+      --shadow-dark: rgba(0, 0, 0, 0.5);
+      --neon-glow: 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan), 0 0 60px var(--accent-cyan);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
     body {
-      font-family: 'Urbanist', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #fff;
-      transition: 0.4s ease;
+      font-family: 'Titillium Web', sans-serif;
+      letter-spacing: 1px;
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
     }
 
-    body.light-mode {
-      background: #f2f2f2;
-      color: #000;
+    /* Animated Background Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    header {
-      background: rgba(0,0,0,0.7);
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+    }
+
+    /* Pulsing Background Orbs */
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 1;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 59, 59, 0.3), transparent);
+      top: 10%;
+      right: 10%;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(0, 255, 213, 0.2), transparent);
+      bottom: 20%;
+      left: 15%;
+      animation-delay: 2s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.2); opacity: 0.6; }
+    }
+
+    /* Headings with Glow Effect */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-primary);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      animation: textGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes textGlow {
+      from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+      to { text-shadow: 0 0 20px rgba(0, 255, 213, 0.6), 0 0 30px rgba(0, 255, 213, 0.4); }
+    }
+
+    /* Header with Dynamic Effects */
+    .header-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
       padding: 20px 30px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(12px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      border-bottom: 1px solid var(--glass-border);
+      animation: slideDown 0.8s ease-out;
     }
 
-    .light-mode header {
-      background: rgba(255,255,255,0.7);
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .drawer-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      background: #1f1f1f;
+      color: var(--text-primary);
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 2px 10px var(--shadow-dark);
+      transition: all 0.3s ease-in-out;
+      animation: bounceIn 1s ease-out;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .drawer-toggle:hover {
+      transform: scale(1.2) rotate(90deg);
+      box-shadow: var(--neon-glow);
+      background: linear-gradient(45deg, var(--primary-red), var(--accent-cyan));
     }
 
     .logo {
       font-size: 28px;
       font-weight: 700;
-      background: var(--gradient);
+      background: linear-gradient(45deg, var(--primary-red), var(--accent-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      margin-left: 60px;
+      animation: logoFloat 3s ease-in-out infinite;
     }
 
-    .menu-icon {
-      cursor: pointer;
-      font-size: 26px;
-      background: rgba(255,255,255,0.1);
-      padding: 6px 12px;
-      border-radius: 10px;
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
     }
 
+    /* Dynamic Drawer */
     .drawer {
-      display: none;
-      flex-wrap: wrap;
-      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      padding: 80px 20px 20px;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      display: flex;
+      flex-direction: column;
       gap: 15px;
-      background: rgba(0, 0, 0, 0.85);
+      border-right: 2px solid var(--accent-cyan);
+    }
+
+    .drawer.open {
+      left: 0;
+      animation: drawerGlow 0.5s ease-out;
+    }
+
+    @keyframes drawerGlow {
+      0% { box-shadow: none; }
+      100% { box-shadow: 10px 0 30px rgba(0, 255, 213, 0.3); }
+    }
+
+    .drawer-overlay {
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      padding: 40px 20px 20px;
-      z-index: 200;
-      animation: slideDown 0.4s ease forwards;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease-in-out;
     }
 
-    .light-mode .drawer {
-      background: rgba(255, 255, 255, 0.9);
-    }
-
-    @keyframes slideDown {
-      0% { opacity: 0; transform: translateY(-100%); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #fff;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-
-    .light-mode .close-btn {
-      color: #000;
+    .drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
 
     .drawer .btn {
-      flex: 0 0 calc(45%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      border-radius: 20px;
-      font-size: 18px;
-      font-weight: bold;
+      padding: 16px 20px;
+      border-radius: 15px;
+      font-size: 16px;
+      font-weight: 600;
       color: white;
-      text-align: center;
       text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+      border: 1px solid var(--glass-border);
+      position: relative;
+      overflow: hidden;
+      transform: translateX(-50px);
+      opacity: 0;
+      animation: slideInLeft 0.6s ease-out forwards;
     }
 
-    .light-mode .drawer .btn {
-      color: black;
+    .drawer .btn:nth-child(2) { animation-delay: 0.1s; }
+    .drawer .btn:nth-child(3) { animation-delay: 0.2s; }
+    .drawer .btn:nth-child(4) { animation-delay: 0.3s; }
+    .drawer .btn:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes slideInLeft {
+      to { transform: translateX(0); opacity: 1; }
     }
 
-    .home { background: #4dabf7; }
-    .games { background: #f06595; }
-    .apps { background: #ae3ec9; }
-    .blog { background: #fcc419; }
-    .faq { background: #40c057; }
-    .mode { background: #fd7e14; }
-
-    .telegram-icon {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
+    .drawer .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
     }
 
-    .telegram-icon img {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
+    .drawer .btn:hover::before {
+      left: 100%;
+    }
+
+    .drawer .btn:hover {
+      transform: translateX(10px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    .home { background: linear-gradient(45deg, #4dabf7, #339af0); }
+    .games { background: linear-gradient(45deg, #f06595, #e64980); }
+    .apps { background: linear-gradient(45deg, #ae3ec9, #9c36b5); }
+    .mode { background: linear-gradient(45deg, #fd7e14, #f76707); }
+
+    /* Main Content with Stagger Animation */
+    .main-content {
+      margin-top: 100px;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
     }
 
     .section-title {
       text-align: center;
       font-size: 32px;
-      margin: 40px 0 20px;
-      background: var(--gradient);
+      margin: 40px 0 30px;
+      font-weight: 700;
+      animation: titlePulse 2s ease-in-out infinite;
+      color: var(--text-primary);
+    }
+
+    /* Separate styling for emoji and text */
+    .section-title .emoji {
+      display: inline-block;
+      margin-right: 10px;
+      font-style: normal;
+      /* Reset any text effects for emojis */
+      background: none !important;
+      -webkit-background-clip: initial !important;
+      -webkit-text-fill-color: initial !important;
+      color: initial !important;
+      text-shadow: none !important;
+      filter: none !important;
+    }
+
+    .section-title .text {
+      background: linear-gradient(45deg, var(--primary-red), var(--accent-cyan));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .light-mode .section-title {
-      -webkit-text-fill-color: initial;
-      background: none;
-      color: #222;
+    @keyframes titlePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
+    /* Dynamic Trending Cards */
     .trending-container {
       overflow-x: auto;
       display: flex;
-      gap: 18px;
+      gap: 20px;
       padding: 0 15px 30px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .trending-container::-webkit-scrollbar {
+      display: none;
     }
 
     .trending-card {
-      min-width: 220px;
-      background: rgba(255,255,255,0.05);
-      padding: 16px;
-      border-radius: 16px;
-      flex-shrink: 0;
-      transition: 0.3s;
-    }
-
-    .light-mode .trending-card {
-      background: #fff;
-      color: #000;
-    }
-
-    .trending-card a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 8px 14px;
+      min-width: 240px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      padding: 20px;
       border-radius: 20px;
-      background: var(--gradient);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 13px;
+      border: 1px solid var(--glass-border);
+      flex-shrink: 0;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      animation: cardFloat 0.8s ease-out forwards;
+      opacity: 0;
+      transform: translateY(50px);
     }
-.apk-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-}
 
-.apk-content img {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
-  object-fit: cover;
-  background: white;
-}
+    .trending-card:nth-child(1) { animation-delay: 0.1s; }
+    .trending-card:nth-child(2) { animation-delay: 0.2s; }
+    .trending-card:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes cardFloat {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .trending-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(0, 255, 213, 0.1), transparent);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+      opacity: 0;
+    }
+
+    .trending-card:hover::before {
+      animation: shimmer 1.5s ease-in-out;
+      opacity: 1;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    .trending-card:hover {
+      transform: translateY(-15px) rotateX(5deg);
+      box-shadow: 0 20px 40px rgba(0, 255, 213, 0.3);
+      border-color: var(--accent-cyan);
+    }
+
+    .trending-card h4 {
+      color: var(--text-primary);
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .trending-card p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    /* Dynamic Red Buttons */
+    .red-button, .trending-card a, .apk-card a {
+      display: inline-block;
+      background: linear-gradient(45deg, var(--primary-red), #ff6b6b);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 4px 10px var(--shadow-red);
+      margin-top: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .red-button::after, .trending-card a::after, .apk-card a::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .red-button:hover::after, .trending-card a:hover::after, .apk-card a:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+
+    .red-button:hover, .trending-card a:hover, .apk-card a:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 8px 25px var(--shadow-red), var(--neon-glow);
+    }
+
+    /* Dynamic APK Grid */
     .apk-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      padding: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 0 15px;
     }
 
     .apk-card {
-      background: rgba(255,255,255,0.05);
-      border-radius: 16px;
-      padding: 20px;
-      text-align: left;
-      transition: 0.3s;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 25px;
+      border: 1px solid var(--glass-border);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      animation: cardSlideUp 0.8s ease-out forwards;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .apk-card:nth-child(1) { animation-delay: 0.1s; }
+    .apk-card:nth-child(2) { animation-delay: 0.2s; }
+    .apk-card:nth-child(3) { animation-delay: 0.3s; }
+    .apk-card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes cardSlideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .apk-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 59, 59, 0.1), transparent);
+      transition: left 0.8s;
+    }
+
+    .apk-card:hover::before {
+      left: 100%;
     }
 
     .apk-card:hover {
-      transform: translateY(-6px);
-      background: rgba(255,255,255,0.08);
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(255, 59, 59, 0.3);
+      border-color: var(--primary-red);
     }
 
-    .light-mode .apk-card {
-      background: #fff;
-      color: #000;
+    .apk-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
     }
 
-    .apk-card a {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 18px;
-      border-radius: 25px;
-      background: var(--gradient);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
+    .apk-content img {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: white;
+      flex-shrink: 0;
+      transition: all 0.3s ease-in-out;
     }
 
+    .apk-card:hover .apk-content img {
+      transform: rotate(360deg) scale(1.1);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    .apk-card h3 {
+      color: var(--text-primary);
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .apk-card p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    /* Input Fields with Glow */
+    .input-field {
+      background: var(--input-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 12px 18px;
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .input-field:focus {
+      outline: none;
+      box-shadow: var(--neon-glow);
+      border-color: var(--accent-cyan);
+      transform: scale(1.02);
+    }
+
+    .input-field::placeholder {
+      color: var(--text-secondary);
+    }
+
+    /* Telegram Icon with Bounce */
+    .telegram-icon {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .telegram-icon img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      transition: all 0.3s ease-in-out;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    .telegram-icon img:hover {
+      transform: scale(1.2) rotate(360deg);
+      box-shadow: 0 0 30px rgba(0, 150, 255, 0.6);
+    }
+
+    /* Footer with Fade In */
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 40px 20px;
       font-size: 14px;
-      color: #aaa;
+      color: var(--text-secondary);
       background: rgba(0, 0, 0, 0.3);
-      margin-top: 40px;
+      margin-top: 60px;
+      border-top: 1px solid var(--glass-border);
+      animation: fadeInUp 1s ease-out;
     }
 
-    .light-mode footer {
-      background: rgba(255,255,255,0.3);
-      color: #333;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 15px 20px;
+      }
+
+      .logo {
+        font-size: 24px;
+        margin-left: 50px;
+      }
+
+      .section-title {
+        font-size: 28px;
+        margin: 30px 0 20px;
+      }
+
+      .trending-card {
+        min-width: 200px;
+        padding: 16px;
+      }
+
+      .apk-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .apk-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+
+      .drawer {
+        width: 280px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main-content {
+        padding: 15px;
+      }
+
+      .trending-container {
+        padding: 0 10px 20px;
+      }
+
+      .apk-grid {
+        padding: 0 10px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+    }
+
+    /* Performance Optimizations */
+    .trending-container, .apk-grid {
+      will-change: transform;
+    }
+
+    img {
+      loading: lazy;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Loading Animation */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--dark-bg);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeOut 2s ease-out 1s forwards;
+    }
+
+    .loading-spinner {
+      width: 60px;
+      height: 60px;
+      border: 3px solid var(--glass-border);
+      border-top: 3px solid var(--accent-cyan);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
     }
   </style>
 </head>
 <body>
+  <!-- Loading Screen -->
+  <div class="loading-overlay">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="particles" id="particles"></div>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- Drawer Overlay -->
+  <div id="drawer-overlay" class="drawer-overlay" onclick="toggleDrawer()"></div>
 
   <!-- Header -->
-  <header>
+  <div class="header-container">
+    <button class="drawer-toggle" onclick="toggleDrawer()">☰</button>
     <div class="logo">PowerStudy MODs</div>
-    <div class="menu-icon" onclick="toggleDrawer()">☰</div>
-  </header>
+  </div>
 
   <!-- Drawer -->
   <div id="drawer" class="drawer">
-    <button class="close-btn" onclick="toggleDrawer()">✖</button>
-    <a href="Psmods" class="btn home">🏠 Home</a>
-    <a href="Games" class="btn games">🎮 Games</a>
-    <a href="Psapp" class="btn apps">📲 Apps</a>
-    
+    <a href="#" class="btn home">🏠 Home</a>
+    <a href="#games" class="btn games">🎮 Games</a>
+    <a href="#apps" class="btn apps">📲 Apps</a>
     <a href="#" class="btn mode" onclick="toggleMode()">🌙 Light/Dark</a>
     <div class="telegram-icon">
-      <a href="https://t.me/+c7KAULUbAJ9hYjI1"><img src="https://img.icons8.com/color/48/telegram-app--v1.png" alt="Telegram" /></a>
+      <a href="https://t.me/+c7KAULUbAJ9hYjI1">
+        <img src="https://img.icons8.com/color/48/telegram-app--v1.png" alt="Telegram" />
+      </a>
     </div>
   </div>
 
-  <!-- Content -->
-  <h2 class="section-title">🔥 Trending MODs</h2>
-  <div class="trending-container">
-    <div class="trending-card"><h4>Insta Pro</h4><p>Version: 9.1.0</p><p>Size: 54MB</p><a href="Moddn?url=https://getmodsapk.com/dl-track/instagram-mod-apk/88303">Get</a></div>
-    <div class="trending-card"><h4>CapCut Premium</h4><p>Version: 8.2.1</p><p>Size: 190MB</p><a href="Moddn?url=https://getmodsapk.com/dl-track/capcut-free-mod-apk/86640">Get</a></div>
-    <div class="trending-card"><h4> Remini </h4><p>Version: 17.3</p><p>Size: 240MB</p><a href="Moddn?url=https://getmodsapk.com/dl-track/enhancer-remini-ai-mod-apk/83749">Get</a></div>
-  </div>
-
-  <h2 class="section-title">🚀 All MOD APKs</h2>
-  <div class="apk-grid">
-  <div class="apk-card">
-    <div class="apk-content">
-      <div>
-        <h3>ChatGPT Plus MOD</h3>
-        <p>Version: 5.3.2 | Size: 139MB</p>
-        <a href="Moddn?url=https://getmodsapk.com/dl-track/chatgpt-premium-apk/37023">Download</a>
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2 class="section-title">
+      <span class="emoji">🔥</span>
+      <span class="text">Trending MODs</span>
+    </h2>
+    <div class="trending-container">
+      <div class="trending-card">
+        <h4>Insta Pro</h4>
+        <p>Version: 9.1.0</p>
+        <p>Size: 54MB</p>
+        <a href="Moddn?url=https://getmodsapk.com/dl-track/instagram-mod-apk/88303">Get Now</a>
       </div>
-      <img src="https://i.ibb.co/0pF5vPjy/Chat-GPT-Premium-MOD-APK4.webp" alt="ChatGPT" />
-    </div>
-  </div>
-
-  <div class="apk-card">
-    <div class="apk-content">
-      <div>
-        <h3>Spotify Premium</h3>
-        <p>Version: 9.0.54.259 | Size: 160MB</p>
-        <a href="Moddn?url=https://getmodsapk.com/dl-track/spotify-music-mega-mod-apk/90387">Download</a>
+      <div class="trending-card">
+        <h4>CapCut Premium</h4>
+        <p>Version: 8.2.1</p>
+        <p>Size: 190MB</p>
+        <a href="Moddn?url=https://getmodsapk.com/dl-track/capcut-free-mod-apk/86640">Get Now</a>
       </div>
-      <img src="https://img.icons8.com/color/64/spotify--v1.png" alt="Spotify" />
-    </div>
-  </div>
-
-  <div class="apk-card">
-    <div class="apk-content">
-      <div>
-        <h3>Netflix Pro</h3>
-        <p>Version: 14.2 | Size: 35MB</p>
-        <a href="Moddn?url=https://getmodsapk.com/dl-track/netflix-mod-free-apk/88526">Download</a>
+      <div class="trending-card">
+        <h4>Remini Pro</h4>
+        <p>Version: 17.3</p>
+        <p>Size: 240MB</p>
+        <a href="Moddn?url=https://getmodsapk.com/dl-track/enhancer-remini-ai-mod-apk/83749">Get Now</a>
       </div>
-      <img src="https://img.icons8.com/color/64/netflix-desktop-app.png" alt="Netflix" />
     </div>
-  </div>
 
-  <div class="apk-card">
-    <div class="apk-content">
-      <div>
-        <h3>Youtube Premium </h3>
-        <p>Version: 7.0 | Size: 92MB</p>
-        <a href="Moddn?url=https://getmodsapk.com/dl-track/youtube-for-android-tv-apk-mod/19119">Download</a>
+    <h2 class="section-title" id="apps">
+      <span class="emoji">🚀</span>
+      <span class="text">All MOD APKs</span>
+    </h2>
+    <div class="apk-grid">
+      <div class="apk-card">
+        <div class="apk-content">
+          <div>
+            <h3>ChatGPT Plus MOD</h3>
+            <p>Version: 5.3.2 | Size: 139MB</p>
+            <a href="Moddn?url=https://getmodsapk.com/dl-track/chatgpt-premium-apk/37023">Download</a>
+          </div>
+          <img src="https://i.ibb.co/0pF5vPjy/Chat-GPT-Premium-MOD-APK4.webp" alt="ChatGPT" />
+        </div>
       </div>
-      <img src="https://i.ibb.co/qMV5mp2m/You-Tube-for-Android-TV-MOD-APK-2-5.webp" />
+
+      <div class="apk-card">
+        <div class="apk-content">
+          <div>
+            <h3>Spotify Premium</h3>
+            <p>Version: 9.0.54.259 | Size: 160MB</p>
+            <a href="Moddn?url=https://getmodsapk.com/dl-track/spotify-music-mega-mod-apk/90387">Download</a>
+          </div>
+          <img src="https://img.icons8.com/color/64/spotify--v1.png" alt="Spotify" />
+        </div>
+      </div>
+
+      <div class="apk-card">
+        <div class="apk-content">
+          <div>
+            <h3>Netflix Pro</h3>
+            <p>Version: 14.2 | Size: 35MB</p>
+            <a href="Moddn?url=https://getmodsapk.com/dl-track/netflix-mod-free-apk/88526">Download</a>
+          </div>
+          <img src="https://img.icons8.com/color/64/netflix-desktop-app.png" alt="Netflix" />
+        </div>
+      </div>
+
+      <div class="apk-card">
+        <div class="apk-content">
+          <div>
+            <h3>YouTube Premium</h3>
+            <p>Version: 7.0 | Size: 92MB</p>
+            <a href="Moddn?url=https://getmodsapk.com/dl-track/youtube-for-android-tv-apk-mod/19119">Download</a>
+          </div>
+          <img src="https://i.ibb.co/qMV5mp2m/You-Tube-for-Android-TV-MOD-APK-2-5.webp" alt="YouTube" />
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
   <footer>
     © 2025 PowerStudy MODs | Crafted with 💻 by Suryansh Singh Rajput 
   </footer>
 
   <script>
+    // Drawer functionality
     const drawer = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+    let isDrawerOpen = false;
+
     function toggleDrawer() {
-      drawer.style.display = drawer.style.display === 'flex' ? 'none' : 'flex';
+      isDrawerOpen = !isDrawerOpen;
+      
+      if (isDrawerOpen) {
+        drawer.classList.add('open');
+        drawerOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.remove('open');
+        drawerOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
     }
 
     function toggleMode() {
-      document.body.classList.toggle("light-mode");
+      console.log('Light/Dark mode toggle');
     }
+
+    // Close drawer when clicking on links
+    document.querySelectorAll('.drawer .btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (isDrawerOpen) {
+          toggleDrawer();
+        }
+      });
+    });
+
+    // Create floating particles
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 6 + 's';
+        particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Initialize particles
+    createParticles();
+
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.querySelectorAll('.trending-card, .apk-card').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Performance optimization: Lazy load images
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src || img.src;
+            img.classList.remove('lazy');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add mouse parallax effect
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      document.querySelectorAll('.bg-orb').forEach((orb, index) => {
+        const speed = (index + 1) * 0.5;
+        const x = (mouseX - 0.5) * speed * 50;
+        const y = (mouseY - 0.5) * speed * 50;
+        orb.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    });
+
+    // Add scroll-triggered animations
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = scrolled * 0.5;
+      
+      document.querySelectorAll('.bg-orb').forEach(orb => {
+        orb.style.transform += ` translateY(${parallax}px)`;
+      });
+    });
+
+    // Add click ripple effect
+    document.querySelectorAll('.red-button, .trending-card a, .apk-card a').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.width = ripple.style.height = size + 'px';
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.classList.add('ripple');
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
   </script>
 </body>
 </html>
